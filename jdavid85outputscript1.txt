@@ -1,0 +1,68 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+flipClass3
+jdavid85assign2
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS jdavid85assign2
+--------------
+
+--------------
+CREATE DATABASE jdavid85assign2
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON jdavid85assign2.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE Agent (AgentID VARCHAR(2) NOT NULL, FirstName VARCHAR(30), LastName VARCHAR(30), City VARCHAR(15), Commission INT, PRIMARY KEY (AgentID))
+--------------
+
+--------------
+CREATE TABLE Customer (CustomerID VARCHAR(2) NOT NULL, FirstName VARCHAR(30), LastName VARCHAR(30), City VARCHAR(15), PhoneNumber VARCHAR(20), AgentID VARCHAR(2), PRIMARY KEY (CustomerID), FOREIGN KEY (AgentID) REFERENCES Agent(AgentID))
+--------------
+
+--------------
+CREATE TABLE Product (ProductID VARCHAR(2) NOT NULL, Description VARCHAR(20), Cost FLOAT, Quantity INT, PRIMARY KEY (ProductID))
+--------------
+
+--------------
+CREATE TABLE purchasedBy (ProductID VARCHAR(2) NOT NULL, CustomerID VARCHAR(2) NOT NULL, Quantity INT NOT NULL, PRIMARY KEY (ProductID, CustomerID, Quantity), FOREIGN KEY (ProductID) REFERENCES Product(ProductID), FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID))
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+Tables_in_jdavid85assign2
+Agent
+Customer
+Product
+purchasedBy
